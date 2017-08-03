@@ -1,0 +1,22 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>游戏测试地址输入页面</title>
+</head>
+<body>
+<h1>登录成功</h1>
+
+<span style="color: red">配置相关游戏测试信息</span>
+
+<form action="/game" method="get">
+    本地游戏地址路径：
+    <br/><input type="type" style="width:500px" name="gameUrl" value="http://localhost:8181/farmer/index.html"><br/>
+    游戏提供合作商后台系统地址:(命名规范:域名/gameLogic)
+    <br/><input type="text" style="width:500px" name="gameLogicUrl" value="http://localhost:8181/testUrl"><br/>
+    <input type="hidden" style="width:500px" name="getMsgUrl" value=""><br/>
+    <input type="hidden" style="width:500px" name="sysType" value="GAME"><br/>
+    <input type="submit" value="确定">
+</form>
+</body>
+</html>

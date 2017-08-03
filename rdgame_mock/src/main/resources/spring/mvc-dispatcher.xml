@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+	<!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射 -->
+	<mvc:resources location="WEB-INF/farmer" mapping="/*"/>
+	<mvc:annotation-driven />
+
+	<!-- 该标签只能配置一个,如果配置多个,最后执行的那个会把前面加载的配置文件内容覆盖掉 如果使用传统的PropertyPlaceholderConfigurer,这需要申明xsi:schemaLocation 
+		context为3.1以下版本, 如果申明3.1版本(含),则需要配置local-override=true(默认false),使用本地properties覆盖环境变量同名属性 
+		否则以环境变量属性为主 -->
+	<context:property-placeholder
+		local-override="true" location="classpath:config/*.properties" />
+
+	<!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->
+	<context:component-scan base-package="com.jd.rd.game.mock" />
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!--<property name="prefix" value="WEB-INF/jsp/" />-->
+		<!--<property name="suffix" value=".jsp" />-->
+		<property name="prefix" value="farmer/" />
+		<property name="suffix" value=".html" />
+	</bean>
+</beans>
